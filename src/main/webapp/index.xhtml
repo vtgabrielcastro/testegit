@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Cadastro de Caneta</title>
+	<style>
+		body {
+			test-align: center;
+			width: 50%;
+		}
+
+		.container {
+			width: 90%; /* Largura do contêiner */
+			margin-left: 50%; /* Centraliza o contêiner horizontalmente */
+			border-radius: 10px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			text-align: center; 
+}
+
+		h1 {
+			color: #2c3e50;
+			font-family: 'Arial', sans-serif;
+			font-size: 2.5em;
+			padding-top: 30px;
+			margin-bottom: 30px;
+			
+		}
+		.form-grid {
+			width: 100%; /* Faz com que a grid ocupe toda a largura do contêiner */
+			font-weight: 700;
+		}
+	</style>
+
+</h:head>
+
+<h:body>
+	<div class="container">
+		<h1>Cadastro: Canetas</h1>
+		<h:form id="formulario">
+			<p:messages id="messages" />
+			<p:panelGrid columns="2" styleClass="form-grid">
+				<p:outputLabel value="Marca" />
+				<p:inputText value="#{canetaBean.caneta.marca}" required="true"
+					requiredMessage="A marca não foi especificada!" />
+
+				<p:outputLabel value="Modelo" />
+				<p:inputText value="#{canetaBean.caneta.modelo}" required="true"
+					requiredMessage="O modelo não foi especificada!" />
+
+				<p:outputLabel value="Cor" />
+				<p:selectOneMenu value="#{canetaBean.caneta.cor}" required="true"
+					requiredMessage="A cor não foi especificada!">
+					<f:selectItem itemLabel="Selecione a cor" itemValue="" />
+					<f:selectItem itemLabel="Azul" itemValue="azul" />
+					<f:selectItem itemLabel="Preta" itemValue="preta" />
+					<f:selectItem itemLabel="Vermelha" itemValue="vermelha" />
+				</p:selectOneMenu>
+
+				<p:button outcome="listagem" value="Listar" icon="pi pi-list" />
+
+				<p:commandButton value="Salvar" icon="pi pi-save"
+					action="#{canetaBean.salvar()}" update="formulario, messages" />
+
+			</p:panelGrid>
+		</h:form>
+	</div>
+</h:body>
+
+</html>
